@@ -1,41 +1,23 @@
-<script>
-    import { onMount } from 'svelte';
+<div class="flex items-center justify-end">
+    <a href="/" class="text-green inline-block text-2xl whitespace-nowrap font-thin md:text-4xl uppercase"><span style="animation-delay: 0.25s;">g</span><span style="animation-delay: 0.5s;">o</span> <span style="animation-delay: 1.25s;">t</span><span style="animation-delay: 1.5s;">o</span> <span style="animation-delay: 2s;">w</span><span style="animation-delay: 2.25s;">a</span><span style="animation-delay: 2.5s;">l</span><span style="animation-delay: 2.75s;">l</span><span style="animation-delay: 3s;">e</span><span style="animation-delay: 3.25s;">t</span>
+    </a>
+</div>
 
-    function textToSpan(text) {
-        let words = ''
-        let counter = 2
-        for (let i = 0; i < text.length; i++) {
-            const element = text[i];
-            if (element != ' ' && i < 9) {
-                words += `<span class="animate-fat-${counter*100}">${element}</span>`
-                counter++
-            } else {
-                words += `<span class="animate-fat-900">${element}</span>`
-            }
-        }
-        return words
+<style>
+    span {
+        animation: breath 2s alternate ease-in-out;
+        animation-iteration-count: 500;
     }
 
-    export let words = 'go to wallet'
-    let ready = false
-    onMount(() => {
-        words = textToSpan(words)
-        ready = true
-    })
-</script>
-
-<div class="flex items-center justify-end">
-    {#if ready}
-    <a href="/" class="text-green text-2xl whitespace-nowrap font-thin md:text-4xl uppercase">
-        {@html words}
-        <!-- <div class="animate-fat-100"></div>
-        <div class="animate-fat-200"></div>
-        <div class="animate-fat-300"></div>
-        <div class="animate-fat-400"></div>
-        <div class="animate-fat-500"></div>
-        <div class="animate-fat-600"></div>
-        <div class="animate-fat-700"></div>
-        <div class="animate-fat-800"></div> -->
-    </a>
-    {/if}
-</div>
+    @keyframes breath {
+        0% {
+            font-weight: 100;
+        }
+        30% {
+            font-weight: 100;
+        }
+        100% {
+            font-weight: 900;
+        }
+    }
+</style>
