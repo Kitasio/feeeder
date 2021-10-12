@@ -4,11 +4,14 @@
     import ConnWallet from "./ConnWallet.svelte";
     import GoWallet from "./GoWallet.svelte"
     import { goto } from '$app/navigation';
+    import { page } from "$app/stores";
     import { onMount, tick } from "svelte";
     import { connected, defaultChainStore } from "svelte-web3"
 
     onMount(() => {
-        defaultChainStore.setBrowserProvider()
+        if ($page.path !== '/') {
+            defaultChainStore.setBrowserProvider()
+        }
     })
 
     const connect = async () => {
