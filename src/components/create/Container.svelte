@@ -1,14 +1,47 @@
 <script>
     import { fade } from 'svelte/transition';
     import { flip } from 'svelte/animate';
-    import { beforeUpdate, afterUpdate } from 'svelte'
+    import {goto} from '$app/navigation'
+    import { beforeUpdate, afterUpdate, onMount } from 'svelte'
+    import { web3, selectedAccount, connected, defaultChainStore } from "svelte-web3"
+    import { createFeeder, factoryABI, factoryContract } from "../../functions/feederFuncs"
 
+    onMount(async () => {
+        await defaultChainStore.setBrowserProvider()
+        if ($connected) {
+            await $selectedAccount
+            const member = {
+                id: id++,
+                address: $selectedAccount,
+                allocation: '100',
+            }
+
+            members = [...members, member]
+        }
+        console.log(members[0].allocation)
+    })
+
+    let feederCreationProgress = ''
+    async function create() {
+        if ($connected) {
+            feederCreationProgress = 'Creating a new Feeder...'
+            let addresses = members.map(e => e.address)
+            let allocations = members.map(e => e.allocation)
+            let feederFactory = new $web3.eth.Contract(factoryABI, factoryContract)
+
+            if (addresses.length !== allocations.length) {
+                console.log('not equal lengths')
+                return
+            }
+            await createFeeder(feederFactory, addresses, allocations, name, $selectedAccount)
+            feederCreationProgress = `Created Feeder with a name: ${name}`
+            goto('/feeders')
+        }
+    }
+    
     let name
     let id = 0;
-    let members = [
-        { id: id++, address: 'test1', allocation: '20' },
-        { id: id++, address: 'test2', allocation: '80' },
-    ]
+    let members = []
 
     function newAddress() {
         const member = {
@@ -51,10 +84,10 @@
             <p class="w-5/12 text-xs sm:text-sm mt-2">Add members by their wallet address and set their allocations</p>
 
             {#each members as member (member.id)}
-            <div transition:fade animate:flip="{{duration: 200}}" class="grid grid-cols-12 mt-5 gap-3">
+            <div in:fade out:fade|local animate:flip="{{duration: 200}}" class="grid grid-cols-12 mt-5 gap-3">
                 <div class="col-span-2 flex flex-col justify-between">
                     <p class="text-xs sm:text-sm">You</p>
-                    <img class="object-cover inline h-12 w-12 rounded-full mb-1" src="https://avatars.dicebear.com/api/jdenticon/${member.address}.svg" alt="">
+                    <img in:fade class="object-cover inline h-12 w-12 rounded-full mb-1" src="https://avatars.dicebear.com/api/jdenticon/${member.address}.svg" alt="">
                 </div>
                 <div class="col-span-7 space-y-1">
                     <p class="text-xs sm:text-sm">Wallet address</p>
@@ -62,7 +95,7 @@
                 </div>
                 <div class="col-span-2 space-y-1">
                     <p class="text-xs sm:text-sm">Allocation</p>
-                    <input bind:value={member.allocation} type="text" class="input w-full border border-gray-light">
+                    <input bind:value="{member.allocation}" type="text" class="input w-full border border-gray-light">
                 </div>
                 <div on:click={() => removeAddress(member)} class="col-span-1 mt-6 cursor-pointer justify-center items-center flex">
                     <img class="w-4" src="/trash.svg" alt="">
@@ -77,6 +110,9 @@
     </div>
 
     <div class="flex justify-center">
-        <button class="uppercase mt-5 btn">create</button>
+        <button on:click={create} class="uppercase mt-5 btn">create</button>
+    </div>
+    <div>
+        {feederCreationProgress}
     </div>
 </div>
