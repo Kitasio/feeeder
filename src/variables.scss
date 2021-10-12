@@ -1,0 +1,7 @@
+/* Variables and mixins declared here will be available in all other SCSS files */
+.input {
+    @apply bg-transparent rounded-xl h-14 p-2;
+}
+.btn {
+    @apply px-5 py-3 font-medium rounded-xl border transition duration-200 hover:font-bold hover:border-green hover:bg-green hover:text-gray-dark;
+}
