@@ -3,8 +3,8 @@
     import { flip } from 'svelte/animate';
     import {goto} from '$app/navigation'
     import { beforeUpdate, afterUpdate, onMount } from 'svelte'
-    import { web3, selectedAccount, connected, defaultChainStore } from "svelte-web3"
-    import { createFeeder, factoryABI, factoryContract } from "../../functions/feederFuncs"
+    import { selectedAccount, connected, defaultChainStore } from "svelte-web3"
+    import { createFeeder } from "../../functions/feederFuncs"
 
     onMount(async () => {
         await defaultChainStore.setBrowserProvider()
@@ -27,13 +27,12 @@
             feederCreationProgress = 'Creating a new Feeder...'
             let addresses = members.map(e => e.address)
             let allocations = members.map(e => e.allocation)
-            let feederFactory = new $web3.eth.Contract(factoryABI, factoryContract)
 
             if (addresses.length !== allocations.length) {
                 console.log('not equal lengths')
                 return
             }
-            await createFeeder(feederFactory, addresses, allocations, name, $selectedAccount)
+            await createFeeder(addresses, allocations, name, $selectedAccount)
             feederCreationProgress = `Created Feeder with a name: ${name}`
             goto('/feeders')
         }
