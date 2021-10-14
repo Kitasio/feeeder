@@ -41,7 +41,7 @@
             <div class="border-b border-green pb-10">
                 <h1 class="text-2xl font-medium mt-10">Value</h1>
                 <div class="flex items-center mt-5 space-x-4">
-                    <input bind:value={eth} type="text" class="input border">
+                    <input bind:value={eth} type="text" class="border w-64 border-green bg-transparent rounded-xl h-14 focus:ring-0 focus:border-green">
                     <p>ETH</p>
                 </div>
                 <div class="mt-2">
