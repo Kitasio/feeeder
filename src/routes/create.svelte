@@ -14,7 +14,7 @@
             const member = {
                 id: id++,
                 address: $selectedAccount,
-                allocation: '1',
+                allocation: 0,
             }
 
             members = [...members, member]
@@ -57,7 +57,7 @@
     }
 
     function newAddress() {
-        const member = { id: id++, address: '', allocation: 1 }
+        const member = { id: id++, address: '', allocation: 0 }
         members = [...members, member]
     }
     function removeAddress(member) {
@@ -137,7 +137,7 @@
 
                     <div class="col-start-3 col-end-13 mt-3">
                         <p>Allocation: {member.allocation}%</p>
-                        <input bind:value={member.allocation} on:change={() => resetValue(key)} min="1" class="w-full" type="range">
+                        <input bind:value={member.allocation} on:change={() => resetValue(key)} class="w-full" type="range">
                     </div>
                 </div>
             {/each}
