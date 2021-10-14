@@ -1,7 +1,7 @@
 <script>
     import { page } from "$app/stores";
     import { fade } from "svelte/transition";
-    import { getName, avaliableBalance, withdrawInETH, avaliableBalanceInWEI } from "../../functions/feederFuncs";
+    import { getName, avaliableBalance, withdrawInETH } from "../../functions/feederFuncs";
     import { connected, selectedAccount } from "svelte-web3"
 
     $: account = $connected ? $selectedAccount : ''
