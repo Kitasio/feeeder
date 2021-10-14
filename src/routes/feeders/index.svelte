@@ -1,9 +1,8 @@
 <script>
     import Nav from "/src/components/nav/Nav.svelte";
     import WalletCard from "/src/components/walletCard.svelte";
-    import { goto } from "$app/navigation";
     import { fade } from "svelte/transition";
-    import { web3, selectedAccount, connected } from "svelte-web3"
+    import { selectedAccount, connected } from "svelte-web3"
     import { getAddresses, factoryABI, factoryContract } from "../../functions/feederFuncs";
 </script>
 

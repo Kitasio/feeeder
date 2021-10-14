@@ -4,6 +4,7 @@
     import { selectedAccount, connected, defaultChainStore } from "svelte-web3"
     import { flip } from 'svelte/animate';
     import { createFeeder } from '../functions/feederFuncs'
+    import { isEthAddress } from '../functions/helperFuncs';
     import {goto} from '$app/navigation'
 
     onMount(async () => {
@@ -34,18 +35,13 @@
     let feederName
     let id = 0;
     let members = []
+
     let remainingAllocation = 100
+    let allocationSum = 0
 
     function resetValue(id) {
-        let allocations = members.map(e => e.allocation)
-        let sum = 0
-        for (let i = 0; i < allocations.length; i++) {
-            let element = allocations[i];
-            element = parseInt(element)
-            sum += element
-        }
-        if (sum > 100) {
-            let overflow = sum - 100
+        if (allocationSum > 100) {
+            let overflow = allocationSum - 100
             members[id].allocation -= overflow
         }
     }
@@ -54,15 +50,10 @@
         feederName
     }
     $: {
+        allocationSum = 0
         allocationErr = false
-        let allocations = members.map(e => e.allocation)
-        let sum = 0
-        for (let i = 0; i < allocations.length; i++) {
-            let element = allocations[i];
-            element = parseInt(element)
-            sum += element
-        }
-        remainingAllocation = 100 - sum
+        members.map(e => allocationSum += parseInt(e.allocation))
+        remainingAllocation = 100 - allocationSum
     }
 
     function newAddress() {
@@ -84,6 +75,12 @@
         if (remainingAllocation > 0) {
             allocationErr = true
             return
+        }
+        for (let i = 0; i < members.length; i++) {
+            const addr = members[i].address;
+            if (isEthAddress(addr) === false) {
+                return
+            }
         }
         if ($connected) {
             inProgress = true
@@ -125,7 +122,7 @@
             </div>
 
             <div class="mt-5 space-y-5">
-            {#each members as member (member.id)}
+            {#each members as member, key (member.id)}
                 <div in:fade out:fade|local animate:flip="{{duration: 200}}" class="bg-gray relative w-full grid gap-3 grid-cols-12 py-8 px-5 rounded-xl">
                     <img on:click={() => removeAddress(member)} class="absolute top-5 right-5 cursor-pointer" src="/x.svg" alt="x">
                     <div class="col-span-2 flex flex-col justify-between items-center">
@@ -135,12 +132,12 @@
 
                     <div class="col-span-10 space-y-1 mr-7">
                         <p class="text-xs sm:text-sm">Wallet address</p>
-                        <input bind:value={member.address} type="text" class="bg-transparent focus:ring-0 focus:border-green rounded-xl h-14 w-full border border-gray-light">
+                        <input bind:value={member.address} type="text" class="{isEthAddress(member.address) ? 'bg-transparent focus:ring-0 focus:border-green rounded-xl h-14 w-full border border-gray-light' : 'bg-transparent focus:ring-0 focus:border-red rounded-xl h-14 w-full border'}">
                     </div>
 
                     <div class="col-start-3 col-end-13 mt-3">
                         <p>Allocation: {member.allocation}%</p>
-                        <input bind:value={member.allocation} on:change={() => resetValue(member.id)} min="1" class="w-full" type="range">
+                        <input bind:value={member.allocation} on:change={() => resetValue(key)} min="1" class="w-full" type="range">
                     </div>
                 </div>
             {/each}
