@@ -98,8 +98,8 @@
 </script>
 
 <div bind:this={div} class="p-5 h-screen overflow-auto">
-    <h1 class="text-center text-4xl text-green uppercase mt-10">create your feeder</h1>
-    <div id="container" class="sm:p-5 lg:p-10 md:w-7/12 lg:w-1/2 2xl:w-4/12 md:mx-auto mt-10 lg:h-5/6 flex flex-col justify-between">
+    <h1 class="text-center text-4xl text-green uppercase 2xl:mt-10">create your feeder</h1>
+    <div id="container" class="sm:p-5 lg:p-10 md:w-7/12 lg:w-1/2 2xl:w-4/12 mx-auto mt-5 lg:mt-0 2xl:mt-10 lg:h-5/6 flex flex-col justify-between">
         <div>
             <h1 class="text-2xl font-medium">Feeder name</h1>
             <div class="flex mt-7 items-center space-x-5 border-b-2 border-green pb-12">

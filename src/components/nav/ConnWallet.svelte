@@ -25,7 +25,7 @@
     <span class="hidden md:inline-block text-lg text-gray-light">{redusedAddress(account)}</span>
 
     {#if dropdown}
-    <div transition:slide={{duration: 200}} class="absolute w-56 rounded-xl bg-gray top-16 p-5">
+    <div transition:slide={{duration: 200}} class="absolute shadow-md w-56 rounded-xl bg-gray top-16 p-5">
         <div class="text-xl font-medium border-b-2 border-gray-light w-full mb-4 pb-4">
             <a href="/feeders">Feeders</a>
         </div>
