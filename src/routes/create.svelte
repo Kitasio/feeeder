@@ -5,7 +5,7 @@
     import { flip } from 'svelte/animate';
     import { createFeeder } from '../functions/feederFuncs'
     import { isEthAddress } from '../functions/helperFuncs';
-    import {goto} from '$app/navigation'
+    import { goto } from '$app/navigation'
 
     onMount(async () => {
         await defaultChainStore.setBrowserProvider()
@@ -16,7 +16,6 @@
                 address: $selectedAccount,
                 allocation: 0,
             }
-
             members = [...members, member]
         }
     })
