@@ -9,7 +9,7 @@ module.exports = {
         'sub': 'Poppins'
       },
       colors: {
-        'red': '#FF004C',
+        'red': '#FF004D',
         'green': '#B2FF65',
         'green-dark': '#6A925C',
         'gray-light': '#636E80',

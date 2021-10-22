@@ -63,24 +63,27 @@
     </div>
 </div>
 {:else} 
-<div in:fade class="w-full flex flex-col rounded-xl bg-gray p-5">
+<div in:fade class="w-full flex flex-col rounded-xl bg-gray p-7">
     <div>
-        <div class="flex space-x-4">
-            <img class="w-14 h-14 rounded-full border border-green" src="https://avatars.dicebear.com/api/jdenticon/${account}.svg" alt="">
-            <div class="flex space-x-2">
-                <p class="font-sans">{redusedAddress(account)}</p>
-                <Copy address={account}></Copy>
+        <div class="flex space-x-4 items-center">
+            <img class="w-14 h-14 rounded-full border-2 border-green" src="https://avatars.dicebear.com/api/jdenticon/${account.toLowerCase()}.svg" alt="">
+            <div>
+                <p class="text-sm opacity-80">Fred</p>
+                <div class="flex space-x-2">
+                    <p class="font-sans">{redusedAddress(account)}</p>
+                    <Copy address={account}></Copy>
+                </div>
             </div>
         </div>
-        <div class="mt-5">
+        <div class="mt-2">
             <p class="text-sm opacity-80">Your current balance</p>
             {#await currentBalance()}
-                <div class="text-3xl text-green font-mono">Waiting...</div>
+                <div class="text-6xl text-green font-mono">Waiting...</div>
             {:then balance}
-                <div class="text-3xl text-green font-sans">{balance}<span class="text-sm ml-2">ETH</span></div>
+                <div class="text-6xl text-green font-sans font-bold">{balance}<span class="font-normal text-sm font-sans ml-1">ETH</span></div>
             {/await}
         </div>
-        <div class="mb-3">
+        <div class="my-3">
             {#await usdPrice()}
                 <span>Waiting...</span>
             {:then price}
@@ -90,7 +93,7 @@
     </div>
     <div class="flex justify-between">
         <a class="rounded-full font-medium px-5 py-2 border hover:border-green hover:bg-green hover:text-gray-dark transition duration-200" href={`/withdraw/${$page.params.address}`}>Withdraw</a>
-        <button on:click={() => statistics = true} class="text-sm mr-2 opacity-80 uppercase hover:text-green transition duration-200">statistics</button>
+        <!-- <button on:click={() => statistics = true} class="text-sm mr-2 opacity-80 uppercase hover:text-green transition duration-200">statistics</button> -->
     </div>
 </div>
 {/if}

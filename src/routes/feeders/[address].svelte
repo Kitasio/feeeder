@@ -19,12 +19,16 @@
     <Nav></Nav>
     {#if $connected}
     <div class="grid grid-rows-2 sm:grid-rows-6 mt-10">
-        <div class="sm:row-span-2 grid gap-10 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 lg:w-9/12 mx-auto">
-            <UserCard></UserCard>
-            <FeederCard></FeederCard>
-            <MembersCard></MembersCard>
+        <div class="sm:row-span-2 grid gap-5 grid-cols-1 sm:grid-cols-3 lg:w-9/12 mx-auto">
+            <div class="col-span-2">
+                <UserCard></UserCard>
+            </div>
+            <div class="col-span-1">
+                <FeederCard></FeederCard>
+            </div>
+            <!-- <MembersCard></MembersCard> -->
         </div>
-        <div class="bg-gray  sm:row-span-4 p-5 pt-7 rounded-xl my-10 lg:w-9/12 mx-auto">
+        <div class="bg-gray  sm:row-span-4 p-5 pt-7 rounded-xl my-5 lg:w-9/12 mx-auto">
             <Tabs {activeItem} {items} on:tabChange={tabChange}/>
             <div class="mt-5">
             {#if activeItem === 'Incoming'}

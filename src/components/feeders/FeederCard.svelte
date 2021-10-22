@@ -15,9 +15,9 @@
     }
 </script>
 
-<div class="w-full rounded-xl bg-gray p-5">
+<div class="w-full h-full rounded-xl bg-gray p-5">
     <div class="flex space-x-4 items-center">
-        <img class="w-14 h-14 rounded-full border border-green" src="https://avatars.dicebear.com/api/identicon/${$page.params.address}.svg" alt="">
+        <img class="w-14 h-14 rounded-full border-2 border-green" src="https://avatars.dicebear.com/api/identicon/${$page.params.address}.svg" alt="">
         <div class="space-y-1">
             <div class="flex space-x-2">
                 <p class="font-sans">{redusedAddress($page.params.address)}</p>

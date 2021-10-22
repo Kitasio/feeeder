@@ -21,7 +21,7 @@
 
 <div in:fade class="relative flex items-center justify-end space-x-4">
     <a class="mr-5 btn" href="/create">create</a>
-    <img on:click|stopPropagation={() => dropdown = !dropdown} class="cursor-pointer object-cover inline h-12 w-12 rounded-full" src="https://avatars.dicebear.com/api/jdenticon/${account}.svg" alt="">
+    <img on:click|stopPropagation={() => dropdown = !dropdown} class="cursor-pointer border-2 border-green object-cover inline h-12 w-12 rounded-full" src="https://avatars.dicebear.com/api/jdenticon/${account}.svg" alt="">
     <span class="hidden md:inline-block text-lg text-gray-light font-sans">{redusedAddress(account)}</span>
 
     {#if dropdown}
