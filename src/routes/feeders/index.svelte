@@ -3,7 +3,7 @@
     import WalletCard from "/src/components/walletCard.svelte";
     import { fade } from "svelte/transition";
     import { selectedAccount, connected } from "svelte-web3"
-    import { getAddresses, factoryABI, factoryContract } from "../../functions/feederFuncs";
+    import { getAddresses } from "../../functions/feederFuncs";
 </script>
 
 <div class="p-5">

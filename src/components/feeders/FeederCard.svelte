@@ -15,12 +15,12 @@
     }
 </script>
 
-<div class="w-full rounded-xl bg-gray mt-10 p-5">
+<div class="w-full rounded-xl bg-gray p-5">
     <div class="flex space-x-4 items-center">
         <img class="w-14 h-14 rounded-full border border-green" src="https://avatars.dicebear.com/api/identicon/${$page.params.address}.svg" alt="">
         <div class="space-y-1">
             <div class="flex space-x-2">
-                <p>{redusedAddress($page.params.address)}</p>
+                <p class="font-sans">{redusedAddress($page.params.address)}</p>
                 <Copy address={$page.params.address}></Copy>
             </div>
             {#await getName($page.params.address) then name}
@@ -31,12 +31,12 @@
     <div class="mt-5">
         <p class="text-sm opacity-80">Total account balance</p>
         {#await getBalance($page.params.address) then balance}
-            <div class="text-3xl">{parseFloat((balance/10**18).toFixed(4))}<span class="text-sm ml-2">ETH</span></div>
+            <div class="text-3xl font-sans">{parseFloat((balance/10**18).toFixed(4))}<span class="text-sm ml-2">ETH</span></div>
         {/await}
     </div>
     <div>
         {#await usdPrice() then price}
-            <span>~${price}</span>
+            <span class="font-sans">~${price}</span>
         {/await}
     </div>
 </div>

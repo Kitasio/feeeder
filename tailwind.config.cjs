@@ -6,6 +6,7 @@ module.exports = {
     extend: {
       fontFamily: {
         'rale': 'Raleway',
+        'sub': 'Poppins'
       },
       colors: {
         'red': '#FF004C',

@@ -115,7 +115,7 @@
                 <div class="flex justify-between">
                     <p class="w-5/12 text-xs sm:text-sm mt-2">Add members by their wallet address and set their allocations</p>
                     {#key remainingAllocation}
-                    <p in:fly={{ y: -5, duration: 500, opacity: 0.7 }} class="{allocationErr ? 'text-red text-2xl mt-3 font-semibold': 'text-green text-2xl mt-3 font-semibold'}">{remainingAllocation}%</p>
+                    <p in:fly={{ y: -5, duration: 500, opacity: 0.7 }} class="{allocationErr ? 'text-red text-2xl mt-3 font-semibold font-sans': 'text-green font-sans text-2xl mt-3 font-semibold'}">{remainingAllocation}%</p>
                     {/key}
                 </div>
             </div>
@@ -131,11 +131,11 @@
 
                     <div class="col-span-10 space-y-1 mr-7">
                         <p class="text-xs sm:text-sm">Wallet address</p>
-                        <input bind:value={member.address} type="text" class="{isEthAddress(member.address) ? 'bg-transparent focus:ring-0 focus:border-green rounded-xl h-14 w-full border border-gray-light' : 'bg-transparent focus:ring-0 focus:border-red rounded-xl h-14 w-full border'}">
+                        <input bind:value={member.address} type="text" class="{isEthAddress(member.address) ? 'bg-transparent focus:ring-0 focus:border-green rounded-xl h-14 w-full border border-gray-light font-sans' : 'bg-transparent focus:ring-0 focus:border-red rounded-xl h-14 w-full border font-sans'}">
                     </div>
 
                     <div class="col-start-3 col-end-13 mt-3">
-                        <p>Allocation: {member.allocation}%</p>
+                        <p>Allocation: <span class="font-sans">{member.allocation}%</span></p>
                         <input bind:value={member.allocation} on:change={() => resetValue(key)} class="w-full" type="range">
                     </div>
                 </div>
