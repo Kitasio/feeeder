@@ -22,6 +22,29 @@
 
 </script>
 
+<div class="flex justify-between leading-none">
+    <a href="/" class="text-green text-lg sm:text-2xl font-black uppercase animate-fatten">Feeder</a>
+    <div class="flex">
+        <div class="flex items-center">
+            {#if $connected}
+            <ConnLinks></ConnLinks>
+            {:else}    
+            <NavLinks></NavLinks>
+            {/if}
+        </div>
+
+        <div class="md:ml-32">
+            {#if $connected}
+            <ConnWallet></ConnWallet>
+            {:else}
+            <div on:click={connect}>
+                <GoWallet></GoWallet>
+            </div>
+            {/if}
+        </div>
+    </div>
+</div>
+<!-- 
 <div class="grid grid-cols-2 lg:grid-cols-nav">
     <div class="flex items-center justify-start">
         <a href="/" class="text-green text-2xl md:text-4xl font-black uppercase animate-fatten">Feeder</a>
@@ -40,4 +63,4 @@
         <GoWallet></GoWallet>
     </div>
     {/if}
-</div>
+</div> -->
