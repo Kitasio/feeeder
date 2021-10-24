@@ -8,40 +8,35 @@
     import Incoming from '../../components/feeders/info/Incoming.svelte'
     import { fade } from "svelte/transition"
 
-    let items = ['Incoming', 'Withdrawals', 'Statistics']
-    let activeItem = 'Incoming'
+    let items = ['Incoming', 'Withdrawals', 'Statistics', 'Members']
+    let activeItem = 'Members'
     const tabChange = (e) => {
         activeItem = e.detail    
     }
 </script>
 
-<div class="p-5 h-screen">
-    <Nav></Nav>
+<section class="p-7 h-screen grid grid-rows-feeder">
+    <Nav />
     {#if $connected}
-    <div class="grid grid-rows-2 sm:grid-rows-6 mt-10">
-        <div class="sm:row-span-2 grid gap-5 grid-cols-1 sm:grid-cols-3 lg:w-9/12 mx-auto">
-            <div class="col-span-2">
-                <UserCard></UserCard>
+    <div class="sm:flex space-y-7 sm:space-y-0 sm:space-x-7 mt-8 md:mx-20">
+        <div class="bg-gray rounded-2xl w-full xl:w-2/3"><UserCard /></div>
+        <div class="bg-gray rounded-2xl w-full xl:w-1/3"><FeederCard /></div>
+    </div>
+    <div class="bg-gray rounded-2xl md:mx-20 mt-7 mb-5 p-7 overflow-auto">
+        <Tabs {activeItem} {items} on:tabChange={tabChange}/>
+        <div class="mt-7">
+        {#if activeItem === 'Incoming'}
+            <div in:fade>
+                <Incoming />
             </div>
-            <div class="col-span-1">
-                <FeederCard></FeederCard>
-            </div>
-            <!-- <MembersCard></MembersCard> -->
-        </div>
-        <div class="bg-gray  sm:row-span-4 p-5 pt-7 rounded-xl my-5 lg:w-9/12 mx-auto">
-            <Tabs {activeItem} {items} on:tabChange={tabChange}/>
-            <div class="mt-5">
-            {#if activeItem === 'Incoming'}
-                <div in:fade>
-                    <Incoming />
-                </div>
-            {:else if activeItem === 'Withdrawals'}
-                <div in:fade>Withdrawals</div>
-            {:else}
-                <div in:fade>Statistics</div>
-            {/if}
-            </div>
+        {:else if activeItem === 'Withdrawals'}
+            <div in:fade>Withdrawals</div>
+        {:else if activeItem === 'Statistics'}
+            <div in:fade>Statistics</div>
+        {:else}
+            <div in:fade><MembersCard /></div>
+        {/if}
         </div>
     </div>
     {/if}
-</div>
+</section>

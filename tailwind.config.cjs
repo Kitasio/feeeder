@@ -6,7 +6,7 @@ module.exports = {
     extend: {
       fontFamily: {
         'rale': 'Raleway',
-        'sub': 'Poppins'
+        'sans': '"Helvetica Neue", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"'
       },
       colors: {
         'red': '#FF004D',
@@ -18,6 +18,9 @@ module.exports = {
       },
       gridTemplateColumns: {
         'nav': '20% 1fr 20%;',
+      },
+      gridTemplateRows: {
+        'feeder': 'auto auto 1fr',
       },
       keyframes: {
         fatten: {
