@@ -1,9 +1,9 @@
 <script>
     import { fade } from "svelte/transition";
     import { page } from "$app/stores";
-    import { getBalance, getName } from '../../functions/feederFuncs'
-    import { getUsdPrice } from '../../functions/priceFeedFuncs'
-    import { redusedAddress } from "../../functions/helperFuncs"
+    import { getBalance, getName } from '$lib/functions/feederFuncs'
+    import { getUsdPrice } from '$lib/functions/priceFeedFuncs'
+    import { redusedAddress } from "$lib/functions/helperFuncs"
     import Copy from "../copy.svelte";
     
     $: feederBalance = getBalance($page.params.address) || ''

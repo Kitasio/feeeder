@@ -1,9 +1,9 @@
 <script>
-    import Nav from "/src/components/nav/Nav.svelte";
-    import WalletCard from "/src/components/walletCard.svelte";
+    import Nav from "$lib//components/nav/Nav.svelte";
+    import WalletCard from "$lib//components/walletCard.svelte";
     import { fade } from "svelte/transition";
     import { selectedAccount, connected } from "svelte-web3"
-    import { getAddresses } from "../../functions/feederFuncs";
+    import { getAddresses } from "$lib/functions/feederFuncs";
 </script>
 
 <div class="p-5">

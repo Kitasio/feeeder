@@ -1,10 +1,10 @@
 <script>
     import { selectedAccount, connected } from 'svelte-web3'
-    import { getBalance, getName, getUser, getTotalFunded } from '../functions/feederFuncs'
-    import { getUsdPrice } from '../functions/priceFeedFuncs'
-    import { redusedAddress } from '../functions/helperFuncs'
+    import { getBalance, getName, getUser, getTotalFunded } from '$lib/functions/feederFuncs'
+    import { getUsdPrice } from '$lib/functions/priceFeedFuncs'
+    import { redusedAddress } from '$lib/functions/helperFuncs'
     import { goto } from '$app/navigation';
-    import Copy from '../components/copy.svelte'
+    import Copy from './copy.svelte'
 
     export let feederAddress
 

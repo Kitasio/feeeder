@@ -3,5 +3,8 @@
     @apply bg-transparent rounded-xl h-14 p-2;
 }
 .btn {
-    @apply rounded-full uppercase font-medium px-7 py-3 text-green border border-green hover:bg-green hover:text-gray-dark transition duration-200;
+    @apply rounded-xl uppercase font-semibold px-7 py-3 text-green border border-green hover:bg-green hover:text-gray-dark transition duration-200;
+}
+.btn-rounded {
+    @apply rounded-full uppercase font-semibold px-7 py-3 text-green border border-green hover:bg-green hover:text-gray-dark transition duration-200;
 }

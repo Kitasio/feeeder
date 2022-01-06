@@ -1,6 +1,6 @@
 <script>
     import { page } from '$app/stores';
-    import { getEtherscanHistory } from '../../../functions/etherscanFuncs'
+    import { getEtherscanHistory } from '$lib/functions/etherscanFuncs'
 </script>
 
 <div>
