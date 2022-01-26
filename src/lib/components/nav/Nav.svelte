@@ -9,7 +9,7 @@
 	import { connected, defaultChainStore } from 'svelte-web3';
 
 	onMount(() => {
-		if ($page.path !== '/') {
+		if ($page.url.pathname !== '/') {
 			defaultChainStore.setBrowserProvider();
 		}
 	});
